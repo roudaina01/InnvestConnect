@@ -1,8 +1,7 @@
-//importation  du l'application express
-const app=require('./backend/app')
-app.listen(8000,()=>{
-    
-console.log('is running in port 8000 ')
+require('dotenv').config();
+const app = require('./backend/app');
 
-
-})
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  console.log(`Serveur démarré sur le port ${PORT}`);
+});
