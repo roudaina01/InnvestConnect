@@ -7,9 +7,12 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 
-const JWT_SECRET = 'a3f7c9e21b4d8f6a1c5e9b2d7f4a8c1e6b3d9f2a7c4e8b1d6f9a2c5e8b3d7f4a1c6e9b2d5f8a3c7e1b4d9f6a2c8e5b1d4f7a9c2e6b3d8f1a5c9e2b7d4f1a8c6';
+const JWT_SECRET = 'const JWT_SECRET = process.env.JWT_SECRET;';
 // Connexion à MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/Projets');
+mongoose
+  .connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/Projets')
+  .then(() => console.log('MongoDB connecté'))
+  .catch((err) => console.error('Erreur MongoDB :', err.message));
 
 // Import des modèles
 const projet = require('./models/Proj');
@@ -18,13 +21,19 @@ const enp = require('./models/Entr');
 const adm = require('./models/Admin');
 const reunion = require('./models/Reuin');
 const contrat = require('./models/Contrat');
-
+app.get('/', (req, res) => {
+  res.json({ message: 'API InnvestConnect en ligne' });
+});
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001' , 'https://invest-connect-eight.vercel.app'],
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://invest-connect-eight.vercel.app',
+    process.env.CLIENT_URL,
+  ].filter(Boolean),
   methods: ['GET', 'POST', 'DELETE', 'OPTIONS', 'PATCH', 'PUT'],
-  allowedHeaders: ['Origin', 'Accept', 'Content-Type', 'X-Requeste-With', 'Authorization'],
+  allowedHeaders: ['Origin', 'Accept', 'Content-Type', 'X-Requested-With', 'Authorization'],
 }));
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -401,11 +410,14 @@ app.post('/Register', (req, res) => {
        
     });
 
-    data.save()
+     data.save()
         .then(() => {
             res.json({ message: 'profile ajouté avec succès' });
         })
-       
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ message: 'Erreur lors de la création du compte' });
+        });
 });
 
 app.post('/Register_enp', (req, res) => {
