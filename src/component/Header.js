@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-
+import api from '../api'
 export default function Header() {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);

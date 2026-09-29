@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import BLOG_POSTS from './Blogdata';
+import api from '../api'
 export default function BlogDetail() {
   const { slug } = useParams();
   const post = BLOG_POSTS.find((p) => p.slug === slug);

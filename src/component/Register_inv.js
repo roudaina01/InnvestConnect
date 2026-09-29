@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-
+import api from '../api'
 export default function Register() {
   const navigate = useNavigate();
   const [status, setStatus] = useState('investisseur');
@@ -41,9 +40,8 @@ export default function Register() {
     };
 
     console.log('données envoyées', data);
-
-    axios.post('http://localhost:8000/Register', data)
-      .then((res) => {
+   // axios.post('http://localhost:8000/Register', data)
+    api.post('/Register', data).then((res) => {
         console.log(res.data.message);
         alert('Compte créé avec succès !');
         navigate('/login');

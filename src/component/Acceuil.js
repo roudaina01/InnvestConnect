@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import BLOG_POSTS from './Blogdata';
 import './Acceuil.css';
-
+import api from '../api'
 const SECTEUR_LABELS = {
   "technologie": "Technologie",
   "construction et immobilier": "Construction et immobilier",

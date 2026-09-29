@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import api from '../api'
 const STATUT_LABELS = {
   en_negociation: 'En négociation',
   signe: 'Signé',

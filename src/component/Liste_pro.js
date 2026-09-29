@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-
+import api from '../api'
 const SECTEUR_LABELS = {
   "technologie": "Technologie",
   "construction et immobilier": "Construction et immobilier",

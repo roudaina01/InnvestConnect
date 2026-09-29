@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import api from '../api'
 const SECTEURS = [
   { value: "technologie", label: "Secteur de la technologie" },
   { value: "construction et immobilier", label: "Secteur construction et immobilier" },

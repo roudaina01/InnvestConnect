@@ -1,7 +1,6 @@
 import React, {  useState } from 'react'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-
+import api from '../api'
 export default function Login() {
   const navigate = useNavigate(); 
   const [statut, setStatut] = useState("");
@@ -21,7 +20,7 @@ export default function Login() {
 
  
  
-  axios.post('http://localhost:8000/Login', data)
+api.post('/Login', data)
     .then((res) => {
       console.log("profile trouvé", res.data);
         localStorage.setItem('token', res.data.token);         

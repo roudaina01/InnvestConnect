@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-
+import api from '../api'
 export default function Register_enp() {
   const [statut, setStatut] = useState('entrepreneur');
   const navigate = useNavigate();
@@ -44,8 +43,7 @@ export default function Register_enp() {
 
     console.log('données envoyées', data);
 
-    axios.post('http://localhost:8000/Register_enp', data)
-      .then((res) => {
+api.post('/Register_enp', data).then((res) => {
         console.log(res.data.message);
         alert('Compte créé avec succès !');
       })

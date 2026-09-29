@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import api from '../api'
 // Mêmes secteurs que le reste du site (voir SECTEUR_LABELS côté admin) —
 // gardés cohérents avec les enums utilisés dans les modèles Proj/inv/enp.
 const SECTEURS = [
